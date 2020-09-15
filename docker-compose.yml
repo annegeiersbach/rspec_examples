@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  app:
+    image: ruby:latest
+    command: bundle install
+    working_dir: /app
+    volumes:
+      - .:/app # make sure your local ruby/node/yarn versions match the project
+    stdin_open: true
+    tty: true
