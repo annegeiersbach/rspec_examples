@@ -26,11 +26,11 @@ RSpec.describe "Composable Matchers Examples" do
 
   context "arrays of indeterminate order (i.e., Model.all <- just enough to be annoying!)" do
     let(:arr) do
-      [1,2,3,4,5,6].shuffle
+      [7,8,1,2,3,4,5,6].shuffle
     end
 
     it "1. a collection containing exactly" do
-      expect(arr).to match(a_collection_containing_exactly(*[1,2,3,4,5,6]))
+      #expect(arr).to match(a_collection_containing_exactly(*[1,2,3,4,5,6]))
     end
 
     # technically under "compound expectations"
@@ -65,11 +65,12 @@ RSpec.describe "Composable Matchers Examples" do
     let(:composed_matching_hash) do
       {
         fee: a_hash_including({
+          id: ((a_value)),
           name: a_string_matching(/should this be case sensitive\?/i),
           fie: a_hash_including({
             foe: a_hash_including({
               fum: a_hash_including({
-                priority: ((a_value > 0).and (a_value < 11)),
+                priority: ((a_value > 0).and (a_value < 11)), # change 11 to 10 to make this test flaky
                 scents: a_collection_containing_exactly(*["Englishman", "Quaker Oats", "Apples", "Gold", "Litterbox"])
               })
             })

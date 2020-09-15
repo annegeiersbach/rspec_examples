@@ -45,7 +45,7 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-  config.register_ordering :global do |examples|
+  config.register_ordering :slowest_last do |examples|
     slow, rest = examples.partition {|ex| !!ex.metadata[:slow] }
     [rest, slow]
   end
